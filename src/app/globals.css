@@ -1,26 +1,180 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Palette reprise de l'app Flutter (lib/core/theme/app_colors.dart) */
+@theme {
+  --color-mint: #12f4a9; /* greenLight */
+  --color-green: #17ca8f;
+  --color-green-medium: #18aa95;
+  --color-green-dark: #28a57e;
+  --color-teal: #147484; /* blueGreen */
+  --color-teal-deep: #0c4f5a;
+  --color-ink: #3c3e4c; /* greyDark */
+  --color-muted: #6e7082; /* greyMedium */
+  --color-line: #e1e1e4; /* greyLight */
+  --color-soft: #f8f8f9; /* greyUltraLight */
+  --color-error: #f35757;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-chillax), var(--font-inter), ui-sans-serif, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out 1.5s infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-ping-slow: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-mint) 40%, transparent);
+  color: var(--color-teal);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--color-teal) 0%, var(--color-green) 55%, var(--color-mint) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-teal) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-teal) 7%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility glass {
+  background: rgb(255 255 255 / 0.86);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Typographie des pages légales */
+.legal h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-teal);
+  margin-bottom: 1.25rem;
+}
+.legal h3 {
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.legal p,
+.legal li {
+  color: color-mix(in srgb, var(--color-ink) 85%, transparent);
+  line-height: 1.75;
+}
+.legal p + p {
+  margin-top: 0.9rem;
+}
+.legal ul {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: grid;
+  gap: 0.45rem;
+}
+.legal ul li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+.legal ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.72em;
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 9999px;
+  background: var(--color-green);
+}
+.legal strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.legal a {
+  color: var(--color-teal);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--color-mint) 80%, transparent);
+}
+.legal a:hover {
+  color: var(--color-green);
+}
+.legal table {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 0 1px var(--color-line);
+}
+.legal th,
+.legal td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+.legal th {
+  background: var(--color-soft);
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.legal tr:last-child td {
+  border-bottom: 0;
+}
+.legal .note {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-mint) 12%, white);
+  padding: 1rem 1.25rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-mint) 40%, transparent);
+}
+
+.legal {
+  overflow-wrap: anywhere;
 }
