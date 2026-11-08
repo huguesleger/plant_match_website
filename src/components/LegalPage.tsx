@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import { LEGAL, LEGAL_LINKS } from "@/lib/site";
 
 export type LegalSection = { id: string; title: string; content: React.ReactNode };
@@ -16,13 +14,11 @@ type Props = {
 
 export default function LegalPage({ eyebrow, title, intro, sections, current }: Props) {
   return (
-    <>
-      <Navbar />
       <main className="relative isolate overflow-x-clip bg-white">
         <div className="absolute -right-40 -top-40 -z-10 h-[600px] w-[700px] rounded-full bg-[radial-gradient(closest-side,rgba(18,244,169,0.14),transparent)]" />
 
         {/* En-tête */}
-        <header className="mx-auto max-w-6xl px-5 pb-12 pt-36 sm:pt-40">
+        <header className="mx-auto max-w-6xl px-5 pb-12 pt-12 sm:pt-16">
           <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-teal">
             <ArrowLeft className="h-4 w-4" /> Retour à l&apos;accueil
           </Link>
@@ -34,7 +30,7 @@ export default function LegalPage({ eyebrow, title, intro, sections, current }: 
 
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 pb-24 lg:grid-cols-[240px_1fr] lg:gap-16">
           {/* Sommaire */}
-          <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
+          <aside className="min-w-0 lg:sticky lg:top-8 lg:self-start">
             <nav aria-label="Sommaire" className="rounded-3xl bg-soft p-5 ring-1 ring-line">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Sommaire</p>
               <ol className="mt-3 space-y-1.5 text-sm">
@@ -60,7 +56,7 @@ export default function LegalPage({ eyebrow, title, intro, sections, current }: 
           {/* Contenu */}
           <article className="legal min-w-0 max-w-3xl">
             {sections.map((s, i) => (
-              <section key={s.id} id={s.id} className="scroll-mt-28 border-t border-line py-10 first:border-t-0 first:pt-0">
+              <section key={s.id} id={s.id} className="scroll-mt-8 border-t border-line py-10 first:border-t-0 first:pt-0">
                 <h2>
                   <span className="mr-3 text-green">{String(i + 1).padStart(2, "0")}</span>
                   {s.title}
@@ -71,7 +67,5 @@ export default function LegalPage({ eyebrow, title, intro, sections, current }: 
           </article>
         </div>
       </main>
-      <Footer />
-    </>
   );
 }
