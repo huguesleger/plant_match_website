@@ -19,7 +19,7 @@ export default function LegalPage({ eyebrow, title, intro, sections, current }: 
 
         {/* En-tête */}
         <header className="mx-auto max-w-6xl px-5 pb-12 pt-12 sm:pt-16">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-teal">
+          <Link href="/" className="web-only inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-teal">
             <ArrowLeft className="h-4 w-4" /> Retour à l&apos;accueil
           </Link>
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.14em] text-green">{eyebrow}</p>

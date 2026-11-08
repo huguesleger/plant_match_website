@@ -178,3 +178,8 @@ body {
 .legal {
   overflow-wrap: anywhere;
 }
+
+/* Mode « app » (webview Flutter, ?app=1) : éléments réservés au site web */
+html[data-app] .web-only {
+  display: none !important;
+}

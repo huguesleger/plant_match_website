@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { SITE_URL } from "@/lib/site";
+import InlineScript from "@/components/InlineScript";
 import "./globals.css";
 
 const inter = Inter({
@@ -44,9 +45,20 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
+/**
+ * Mode « app » : quand l'app Flutter ouvre une page avec ?app=1 (webview),
+ * on marque <html data-app> avant le premier rendu pour masquer les éléments
+ * `.web-only`. Le mode est mémorisé pour la session de la webview, afin de
+ * rester actif quand on suit un lien vers une autre page.
+ */
+const APP_MODE_SCRIPT = `try{var k="pm-app";if(new URLSearchParams(location.search).get("app")==="1")sessionStorage.setItem(k,"1");if(sessionStorage.getItem(k)==="1")document.documentElement.setAttribute("data-app","")}catch(e){}`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${inter.variable} ${chillax.variable} antialiased`}>
+    <html lang="fr" className={`${inter.variable} ${chillax.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        <InlineScript html={APP_MODE_SCRIPT} />
+      </head>
       <body className="min-h-dvh overflow-x-clip bg-white">{children}</body>
     </html>
   );
