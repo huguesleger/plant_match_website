@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage, { type LegalSection } from "@/components/LegalPage";
-import { LEGAL, SITE_URL } from "@/lib/site";
+import { LEGAL, SITE_DOMAIN } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Mentions légales — PlantMatch",
-  description: "Mentions légales du site plantmatch.app et de l'application mobile PlantMatch.",
+  description: `Mentions légales du site ${SITE_DOMAIN} et de l'application mobile PlantMatch.`,
   alternates: { canonical: "/mentions-legales" },
 };
 
@@ -16,7 +16,7 @@ const sections: LegalSection[] = [
     content: (
       <>
         <p>
-          Le site <strong>{SITE_URL.replace("https://", "")}</strong> et l&apos;application mobile <strong>PlantMatch</strong>{" "}
+          Le site <strong>{SITE_DOMAIN}</strong> et l&apos;application mobile <strong>PlantMatch</strong>{" "}
           (iOS et Android) sont édités par :
         </p>
         <ul>
@@ -99,7 +99,7 @@ const sections: LegalSection[] = [
     title: "Cookies",
     content: (
       <p>
-        Le site plantmatch.app ne dépose aucun cookie publicitaire ni de mesure d&apos;audience. Seuls des éléments
+        Le site {SITE_DOMAIN} ne dépose aucun cookie publicitaire ni de mesure d&apos;audience. Seuls des éléments
         strictement nécessaires à son fonctionnement peuvent être utilisés, ce qui ne requiert pas de consentement.
       </p>
     ),

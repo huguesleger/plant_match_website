@@ -2,6 +2,8 @@
 
 Landing page de l'app mobile PlantMatch (Next.js 16, Tailwind CSS 4, Motion).
 
+En ligne : https://plantmatch-app.vercel.app
+
 ## Développement
 
 ```bash
@@ -20,11 +22,12 @@ Les couleurs viennent de `lib/core/theme/app_colors.dart` (app Flutter) et sont 
 
 ## Déploiement Vercel
 
-Option 1 — via GitHub : pousser le repo puis l'importer sur https://vercel.com/new (framework détecté automatiquement).
+Le projet Vercel `plantmatch` est relié à ce repository : chaque push sur `main` est déployé en production sur https://plantmatch-app.vercel.app.
 
-Option 2 — via la CLI :
+Déploiement manuel si besoin :
 
 ```bash
-npx vercel login
-npx vercel --prod
+npx vercel deploy --prod
 ```
+
+Pour changer de domaine, modifier `SITE_DOMAIN` dans `src/lib/site.ts`.

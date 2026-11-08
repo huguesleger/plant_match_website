@@ -2,7 +2,8 @@
 export const APP_STORE_URL = "https://apps.apple.com/app/plantmatch";
 export const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.plantmatch.app";
 
-export const SITE_URL = "https://plantmatch.app";
+export const SITE_DOMAIN = "plantmatch-app.vercel.app";
+export const SITE_URL = `https://${SITE_DOMAIN}`;
 
 // Liens absolus (« / ») pour fonctionner aussi depuis les pages légales.
 export const NAV_LINKS = [

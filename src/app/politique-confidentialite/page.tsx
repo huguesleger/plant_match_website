@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage, { type LegalSection } from "@/components/LegalPage";
-import { LEGAL } from "@/lib/site";
+import { LEGAL, SITE_DOMAIN } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité — PlantMatch",
@@ -18,7 +18,7 @@ const sections: LegalSection[] = [
     content: (
       <>
         <p>
-          Le responsable du traitement des données collectées via l&apos;application PlantMatch et le site plantmatch.app est{" "}
+          Le responsable du traitement des données collectées via l&apos;application PlantMatch et le site {SITE_DOMAIN} est{" "}
           <strong>{LEGAL.publisher}</strong>, {LEGAL.address}.
         </p>
         <p>
@@ -165,7 +165,7 @@ const sections: LegalSection[] = [
             Google Play.
           </li>
           <li>
-            <strong>Vercel</strong> : hébergement du site plantmatch.app.
+            <strong>Vercel</strong> : hébergement du site {SITE_DOMAIN}.
           </li>
         </ul>
       </>
@@ -275,7 +275,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "site",
-    title: "Site plantmatch.app et cookies",
+    title: "Site internet et cookies",
     content: (
       <p>
         Le site vitrine ne demande aucune donnée personnelle et ne dépose aucun cookie publicitaire ni de mesure
